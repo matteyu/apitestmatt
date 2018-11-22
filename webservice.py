@@ -1,6 +1,7 @@
 from tornado import web, ioloop
 import json
 import pandas
+import os
 
 class MainHandler(web.RequestHandler):
     def get(self):
@@ -66,5 +67,6 @@ def entrypoint():
 
 if __name__ == "__main__":
     app = entrypoint()
-    app.listen(5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.listen(port)
     ioloop.IOLoop.current().start()
