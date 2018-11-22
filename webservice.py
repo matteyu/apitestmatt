@@ -1,4 +1,4 @@
-from tornado import web, ioloop
+from tornado import web, ioloop, httpserver
 import json
 import pandas
 import os
@@ -67,6 +67,7 @@ def entrypoint():
 
 if __name__ == "__main__":
     app = entrypoint()
+    http_server = httpserver.HTTPServer(app)
     port = int(os.environ.get("PORT", 5000))
-    app.listen(port)
+    http_server.listen(port)
     ioloop.IOLoop.current().start()
